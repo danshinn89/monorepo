@@ -1,0 +1,19 @@
+{
+  "name": "clrfund",
+  "version": "0.0.1",
+  "description": "Documentation for clr.fund",
+  "main": "index.js",
+  "authors": {
+    "name": "clrfund",
+    "email": "hi@clr.fund"
+  },
+  "repository": "https://github.com/clrfund/monorepo/docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}

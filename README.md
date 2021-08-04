@@ -21,13 +21,15 @@ The clr.fund smart contracts consist of a factory contract that deploys a new co
 
 The clr.fund application can use any [EVM-compatible chain](https://ethereum.org/) as a backend. The application can be hosted on [IPFS](https://ipfs.io/) and can also run locally.
 
-For more details, see the [sequence diagram](docs/clrfund.svg) and [clr.fund constitution](https://github.com/clrfund/constitution).
-![sequence diagram](docs/clrfund.svg)
+For more details, see the [sequence diagram](docs/src/.vuepress/public/img/clrfund.svg) and [clr.fund constitution](https://github.com/clrfund/constitution).
+![sequence diagram](docs/src/.vuepress/public/img/clrfund.svg)
 
 ### Limitations
+
 There are various limitations in our current design; we discuss some of them here.
 
 #### Trusted Participants
+
 The need for several trusted parties is the biggest limitation in the current design. The owner could, and likely will, be replaced with a DAO or some other decision-making mechanism which could alleviate the trust concern for this role.
 
 However, without some breakthrough in oblivious computation, the zk-SNARK computations must necessarily be done by some trusted party who becomes a prime target for bribery as they are the only participant who can know the details of each contributor’s contributions.
@@ -35,6 +37,7 @@ However, without some breakthrough in oblivious computation, the zk-SNARK comput
 Several solutions have been suggested, such as having the operator’s private keys and computations happen inside of some trusted computing environment or wallfacer-esque isolation of the operator. But most just kick the trust-can down the road a little further.
 
 #### Single Token
+
 For simplicity's sake in the contract, the zk-SNARK, and the user interface, clr.fund selects an ERC20 token as it's native token (set by the contract owner), which is the only token that the funding round contract interacts with. This is an issue given our goal of being agnostic to the funding source.
 
 For example, block reward funding would be in ETH, while many users may want to contribute DAI or other ERC20 tokens.
@@ -58,21 +61,25 @@ nvm use 12
 ```
 
 ### Install the dependencies
+
 ```
 yarn
 ```
 
 #### Compile the contracts
+
 ```
 yarn build:contracts
 ```
 
 #### Run unit tests
+
 ```
 yarn test
 ```
 
 #### Start the frontend app in development mode (hot-code reloading, error reporting, etc.)
+
 ```
 yarn start:node
 ```
@@ -85,12 +92,13 @@ yarn start:dev
 ```
 
 #### Start the frontend sans a local blockchain
+
 ```
 yarn start:web
 ```
 
 #### Lint the files
+
 ```
 yarn lint
 ```
-
