@@ -43,7 +43,9 @@
         </div>
         <div class="hr" />
       </div>
-
+      <div class="project-list">
+        <span>round result: {{ this.round }}</span>
+      </div>
       <div class="project-list">
         <call-to-action-card
           v-if="!this.search && this.selectedCategories.length === 0"
@@ -76,7 +78,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { FixedNumber } from 'ethers'
 import { DateTime } from 'luxon'
-
+import ClrFund from '../../../contracts/build/contracts/contracts/ClrFund.sol/ClrFund.json'
+import { ethers } from 'ethers'
 import { RoundInfo, getCurrentRound, TimeLeft } from '@/api/round'
 import {
   Project,
@@ -135,6 +138,7 @@ export default class ProjectList extends Vue {
   isLoading = true
   categories: string[] = ['content', 'research', 'tooling', 'data']
   selectedCategories: string[] = []
+  round = ''
 
   get projectsByCategoriesSelected(): Project[] {
     return this.selectedCategories.length === 0
@@ -147,6 +151,16 @@ export default class ProjectList extends Vue {
   }
 
   async created() {
+    const { ethereum } = window
+
+    const provider = new ethers.providers.Web3Provider(ethereum)
+    const signer = provider.getSigner()
+    const contractAddress = '0xc8c7D0cB06DDe4bf59B7e03d5b8e540FDbD9d59B'
+
+    const contract = new ethers.Contract(contractAddress, ClrFund.abi, signer)
+
+    this.round = await contract.getCurrentRound()
+
     //TODO: update to take factory address as a parameter, default to env. variable
     const roundAddress =
       this.$route.params.address ||

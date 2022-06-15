@@ -7,6 +7,7 @@ import '@nomiclabs/hardhat-waffle'
 import '@nomiclabs/hardhat-ganache'
 import 'hardhat-contract-sizer'
 
+
 dotenv.config()
 
 const GAS_LIMIT = 20000000
@@ -39,9 +40,10 @@ const config: HardhatUserConfig = {
       gasLimit: GAS_LIMIT,
     } as any,
     rinkeby: {
-      url: process.env.JSONRPC_HTTP_URL || 'http://127.0.0.1:8545',
+      url: process.env.JSONRPC_HTTP_URL || 'https://rinkeby.infura.io/v3/5ed3495255e94d868dc8cace9455f237',
+      gasLimit: GAS_LIMIT,
       accounts,
-    },
+    } as any,
     xdai: {
       url: process.env.JSONRPC_HTTP_URL || 'https://rpc.xdaichain.com',
       timeout: 60000,
